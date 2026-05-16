@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# Git: after patch body is staged; before COMMIT_EDITMSG is prepared ($1=commit message pathname).
+COMMIT_EDITMSG="$1"
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+"${SCRIPT_DIR}/scripts/log-hook.sh" applypatch-msg "COMMIT_EDITMSG=${COMMIT_EDITMSG}"

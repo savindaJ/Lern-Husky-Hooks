@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Git: before git-am applies patch ($1=patch pathname). Rare in app teams; exits 1 to refuse apply.
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+"${SCRIPT_DIR}/scripts/log-hook.sh" pre-applypatch "${1:+patch_file=$1}"

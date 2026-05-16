@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"All checks passed (demo hook).\" && exit 0",
     "prepare": "husky",
-    "lint:demo": "echo \"Lint would run here (eslint, prettier, …)\""
+    "lint:demo": "echo \"Lint would run here (eslint, prettier, …)\"",
+    "check:push": "echo \"Pre-push checks (tests, lint, …) running…\" && npm test"
   },
   "keywords": [],
   "author": "",

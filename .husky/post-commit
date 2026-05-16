@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Git: fired after a successful commit — good for Slack pings, tagging, telemetry (often skipped for speed).
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+"${SCRIPT_DIR}/scripts/log-hook.sh" post-commit "HEAD=$(git rev-parse --short HEAD 2>/dev/null || echo '?')"

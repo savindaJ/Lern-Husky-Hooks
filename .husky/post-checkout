@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# Git: after checkout/switch ($1 prev HEAD, $2 new HEAD, $3 flag: 1=branch switch, 0=file checkout).
+# Common idea: reinstall deps here if package-lock/package.json differs (can be slow — test first).
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+"${SCRIPT_DIR}/scripts/log-hook.sh" post-checkout "prev=${1:?} new=${2:?} is_branch_switch=${3:?}"

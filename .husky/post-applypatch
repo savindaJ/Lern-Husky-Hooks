@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Git: after applying a patch successfully with git-am ($1=patch pathname).
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+"${SCRIPT_DIR}/scripts/log-hook.sh" post-applypatch "${1:+patch_file=$1}"

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Git: before rebase ($1 upstream ref). Exit 1 to refuse the entire rebase.
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+"${SCRIPT_DIR}/scripts/log-hook.sh" pre-rebase "upstream=${1:?}"

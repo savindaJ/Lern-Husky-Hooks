@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Git: before automatic housekeeping (git gc). Exit 1 to decline running gc now.
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+"${SCRIPT_DIR}/scripts/log-hook.sh" pre-auto-gc "(decline with exit 1 to skip gc)"

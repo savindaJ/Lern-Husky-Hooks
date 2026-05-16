@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Git invokes pre-push before sending refs; $1 = remote name (e.g. origin), $2 = remote URL.
+echo ""
+echo "--- Husky: pre-push hook ---"
+echo "remote: ${1:?}"
+npm run check:push
+echo "--- Husky: pre-push done ---"
+echo ""

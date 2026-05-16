@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+# Git: tweak the message before editor opens ($1=file, $2=source message|merge|squash..., $3 optional SHA).
+# Safe demo: append commented hints only — they do not affect commit-msg validation.
+COMMIT_EDITMSG="$1"
+SOURCE="$2"
+
+{
+  printf '\n#\n'
+  printf '# [husky demo] prepare-commit-msg — source: %s\n' "${SOURCE:-?}"
+  printf '# Example subjects: feat: add thing   fix: patch bug\n'
+  printf '# Leave the first subject line unchanged to pass commit-msg rules.\n#\n'
+} >>"${COMMIT_EDITMSG}"
+
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+"${SCRIPT_DIR}/scripts/log-hook.sh" prepare-commit-msg "source=${SOURCE}"

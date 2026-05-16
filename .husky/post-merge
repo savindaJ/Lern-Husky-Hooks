@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# Git: after git merge succeeds ($1: 1 = squash-merge, 0 otherwise; may vary by Git version—default safe).
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+squash_merge="${1-?}"
+"${SCRIPT_DIR}/scripts/log-hook.sh" post-merge "squash_merge_flag=${squash_merge}"

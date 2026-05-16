@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+# Git: after history rewrite ($1=rebase|commit). Reads stdin old-sha SP new-sha LF per rewritten commit.
+COMMAND="${1-?}"
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+lines="$(wc -l | tr -d ' ')"
+"${SCRIPT_DIR}/scripts/log-hook.sh" post-rewrite "command=${COMMAND} stdin_lines=${lines:-0}"

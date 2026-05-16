@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Git: invoked before finishing a merge commit (conflicts resolved, commit about to record). Takes no argv.
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+"${SCRIPT_DIR}/scripts/log-hook.sh" pre-merge-commit "(Git passes no hook args)"
