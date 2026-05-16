@@ -1,0 +1,17 @@
+{
+  "name": "husky-hook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"All checks passed (demo hook).\" && exit 0",
+    "prepare": "husky",
+    "lint:demo": "echo \"Lint would run here (eslint, prettier, …)\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}
