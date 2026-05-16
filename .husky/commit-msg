@@ -1,0 +1,45 @@
+#!/usr/bin/env sh
+# Validates the commit subject (Git passes the temp file path as $1).
+# Allowed: conventional commits (type: description), optional scope, Merge/Revert prefixes.
+
+COMMIT_MSG_FILE=${1:?missing commit msg file}
+
+first_line=$(grep -v '^#' "$COMMIT_MSG_FILE" | grep -v '^[[:space:]]*$' | head -n1)
+
+if [ -z "$first_line" ]; then
+  echo ''
+  echo 'Husky: commit refused — empty commit message.'
+  echo ''
+  exit 1
+fi
+
+# Generated merge / revert messages from Git are allowed as-is.
+case "$first_line" in
+  Merge\ *)
+    exit 0
+    ;;
+  Revert\ *)
+    exit 0
+    ;;
+esac
+
+# conventionalcommits.org style: type(optional-scope)!: summary — ! is optional (breaking change)
+pattern='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([^)]+\))?(!)?: .+'
+if printf '%s\n' "$first_line" | LC_ALL=C grep -Eq "$pattern"; then
+  exit 0
+fi
+
+echo ''
+echo 'Husky: commit refused — message does not match the required format.'
+echo ''
+echo 'Use: <type>[(optional-scope)][!]: <subject>'
+echo 'Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert'
+echo ''
+echo 'Examples:'
+echo '  feat: add login form'
+echo '  fix(auth): handle expired token'
+echo '  chore: bump dependency'
+echo ''
+echo "Got: \"$first_line\""
+echo ''
+exit 1
